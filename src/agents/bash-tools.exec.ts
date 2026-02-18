@@ -809,8 +809,8 @@ export function createExecTool(
   );
   const allowBackground = defaults?.allowBackground ?? true;
   const defaultTimeoutSec =
-    typeof defaults?.timeoutSec === "number" && defaults.timeoutSec > 0
-      ? defaults.timeoutSec
+    typeof defaults?.timeoutSec === "number" && defaults.timeoutSec >= 0
+      ? defaults.timeoutSec // 0 means no timeout (runExecProcess skips the timer when timeoutSec <= 0)
       : 1800;
   const defaultPathPrepend = normalizePathPrepend(defaults?.pathPrepend);
   const safeBins = resolveSafeBins(defaults?.safeBins);
